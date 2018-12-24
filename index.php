@@ -1,3 +1,10 @@
 <?php
+include __DIR__ . "/config.php";
 
-echo "e730430b";
+
+//Получаем и декодируем уведомление
+$request = json_decode(file_get_contents('php://input'));
+
+
+
+echo $checkkey;
