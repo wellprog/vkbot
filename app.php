@@ -26,11 +26,15 @@ class App {
     /** @var Logger $Logger */
     public static $Logger;
 
+    /** @var VK\Client\VKApiClient $vk */
+    public static $vk;
+
     public function run() {
         App::$Request = new Request();
         App::$Responce = new Responce();
         App::$Executer = new Executer(App::$Responce, App::$Request);
         App::$Logger = new Logger();
+        App::$vk = new \VK\Client\VKApiClient();
 
         if (self::$Request->Raw("secret", "") !== self::$callbackkey) {
             self::$Responce->WriteError(Errors::ACCESS_DENIED);

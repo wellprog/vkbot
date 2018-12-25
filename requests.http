@@ -18,3 +18,9 @@ POST http://localhost/
     },
     "secret" : "1"
 }
+
+
+###########
+POST http://vtest.fvds.ru/vk/callback/index.php
+
+{"type":"message_new","object":{"date":1545758568,"from_id":476054797,"id":2,"out":0,"peer_id":476054797,"text":"xcvxcvbxcbvxcvb","conversation_message_id":2,"fwd_messages":[],"important":false,"random_id":0,"attachments":[],"is_hidden":false},"group_id":143324634,"secret":"VjGpuIOlR0XNEJka5WwF"}

@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . "/config.php";
 include __DIR__ . "/app.php";
+include __DIR__ . "/vendor/autoload.php";
 
 
 if (!isset($callbackkey)) $callbackkey = "";
