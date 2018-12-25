@@ -6,7 +6,7 @@ class V1_Message_Controller extends Base_Controller {
     }
 
     public function NewAction () {
-        $data = $this->Request->Raw("data");
+        $data = $this->Request->Raw("object");
         App::$Logger->Write($data);
         return $this->Responce->WriteRaw("OK");
     }
