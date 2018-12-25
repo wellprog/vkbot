@@ -60,9 +60,10 @@ class Request {
     }
 
     public function RequestedVersion() {
-        if (count($this->path) < 1)
-            return "v1";
-        return trim($this->path[0]);
+        // if (count($this->path) < 1)
+        //     return "v1";
+        // return trim($this->path[0]);
+        return "v1";
     }
 
     public function RequestedController() {
