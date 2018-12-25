@@ -87,6 +87,11 @@ class Responce {
     }
 
 
+    public function WriteRaw($data) {
+        echo $data;
+    }
+
+
     private function getTemplate() {
         return [
             "ErrorID" => 0,

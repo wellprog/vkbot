@@ -15,15 +15,3 @@ App::$checkkey = $checkkey;
 $app = new App();
 
 $app->run();
-
-
-
-
-// switch ($request["type"]) {
-//     case "confirmation":
-//         echo $checkkey;
-//         break;
-//     default:
-//         die("Access Denied");
-//         break;
-// }

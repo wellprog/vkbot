@@ -66,8 +66,21 @@ class Request {
     }
 
     public function RequestedController() {
-        if ($this->Raw("type", false) !== false)
-            return $this->Raw("type");
+        if ($this->Raw("type", false) !== false) {
+            $controller = $this->Raw("type");
+            $parts = explode("_", $controller);
+
+            if (count($parts) == 1)
+                return ucfirst(strtolower($this->Raw("type")));
+
+            $controller = "";
+            for ($i = 0; $i < count($parts); $i++) {
+                if (count($parts) - $i <= 1) break;
+                $controller .= $parts[$i];
+            }
+
+            return ucfirst(strtolower($controller));
+        }
 
         if (count($this->path) < 2)
             return "Home";
@@ -76,6 +89,16 @@ class Request {
     }
 
     public function RequestedAction() {
+        if ($this->Raw("type", false) !== false) {
+            $action = $this->Raw("type");
+            $parts = explode("_", $action);
+
+            if (count($parts) == 1)
+                return "IndexAction";
+
+            return ucfirst(strtolower($parts[count($parts) - 1])) . "Action";
+        }
+
         if (count($this->path) < 3)
             return "IndexAction";
         return ucfirst(strtolower(trim($this->path[2]))) . "Action";

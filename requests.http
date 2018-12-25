@@ -1,0 +1,20 @@
+#####
+POST http://localhost/
+
+{ 
+    "type": "confirmation", 
+    "group_id": 143324634 ,
+    "secret" : "1"
+}
+
+#####
+POST http://localhost/
+
+{ 
+    "type": "message_new", 
+    "group_id": 143324634 ,
+    "data" : {
+        "test": "Adfs"
+    },
+    "secret" : "1"
+}
