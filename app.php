@@ -34,7 +34,7 @@ class App {
         App::$Responce = new Responce();
         App::$Executer = new Executer(App::$Responce, App::$Request);
         App::$Logger = new Logger();
-        App::$vk = new \VK\Client\VKApiClient();
+        App::$vk = new \VK\Client\VKApiClient("5.92");
 
         if (self::$Request->Raw("secret", "") !== self::$callbackkey) {
             self::$Responce->WriteError(Errors::ACCESS_DENIED);
