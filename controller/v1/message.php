@@ -16,21 +16,23 @@ class V1_Message_Controller extends Base_Controller {
                     "one_time" => true,
                     "buttons" => [
                         [
-                            "action" => [
-                                "type" => "text",
-                                "payload" => '{ "t": "123" }',
-                                "label" => "Red"
+                            [
+                                "action" => [
+                                    "type" => "text",
+                                    "payload" => '{ "t": "123" }',
+                                    "label" => "Red"
+                                ],
+                                "color" => "negative",
                             ],
-                            "color" => "negative",
+                            [
+                                "action" => [
+                                    "type" => "text",
+                                    "payload" => '{ "t": "321" }',
+                                    "label" => "Blue"
+                                ],
+                                "color" => "positive",
+                            ]
                         ],
-                        [
-                            "action" => [
-                                "type" => "text",
-                                "payload" => '{ "t": "321" }',
-                                "label" => "Blue"
-                            ],
-                            "color" => "positive",
-                        ]
                     ],
                 ]
             ]);
