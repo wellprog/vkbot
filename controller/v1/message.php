@@ -7,18 +7,18 @@ class V1_Message_Controller extends Base_Controller {
 
     public function NewAction () {
         $data = $this->Request->Raw("object");
-        App::$vk->messages()->send(App::$apikey, [
-            "user_id" => $data["from_id"],
-            "peer_id" => $data["peer_id"],
-            "message" => "test",
-            "keyboard" => [
-                "one_time" => true,
-                "buttons" => [
-                    [
+        try {
+            App::$vk->messages()->send(App::$apikey, [
+                "user_id" => $data["from_id"],
+                "peer_id" => $data["peer_id"],
+                "message" => "test",
+                "keyboard" => [
+                    "one_time" => true,
+                    "buttons" => [
                         [
                             "action" => [
                                 "type" => "text",
-                                "payload" => "abc",
+                                "payload" => '{ "t": "123" }',
                                 "label" => "Red"
                             ],
                             "color" => "negative",
@@ -26,15 +26,17 @@ class V1_Message_Controller extends Base_Controller {
                         [
                             "action" => [
                                 "type" => "text",
-                                "payload" => "cba",
+                                "payload" => '{ "t": "321" }',
                                 "label" => "Blue"
                             ],
                             "color" => "positive",
                         ]
                     ],
-                ],
-            ]
-        ]);
+                ]
+            ]);
+        } catch (Exception $ex) {
+            App::$Logger->Write($ex->getMessage());
+        }
         return $this->Responce->WriteRaw("OK");
     }
 
