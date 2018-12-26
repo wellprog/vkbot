@@ -29,7 +29,8 @@ class V1_Message_Controller extends Base_Controller {
                 ]
             ]);
         } catch (Exception $ex) {
-            App::$Logger->Write($ex->getMessage());
+            $txt = var_export($ex, true);
+            App::$Logger->Write($txt);
         }
         return $this->Responce->WriteRaw("OK");
     }
