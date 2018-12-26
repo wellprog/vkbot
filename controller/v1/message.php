@@ -13,7 +13,7 @@ class V1_Message_Controller extends Base_Controller {
                 "peer_id" => $data["peer_id"],
                 "message" => "test",
                 "random_id" => mt_rand(),
-                "keyboard" => [
+                "keyboard" => json_encode([
                     "one_time" => true,
                     "buttons" => [
                         [
@@ -22,18 +22,20 @@ class V1_Message_Controller extends Base_Controller {
                                     "type" => "text",
                                     "payload" => json_encode(["button" => "123"]),
                                     "label" => "Ура Ура",
-                                ]
+                                ],
+                                "color" => "primary",
                             ],
                             [
                                 "action" => [
                                     "type" => "text",
                                     "payload" => json_encode(["button" => "321"]),
                                     "label" => "Ару Ару",
-                                ]
+                                ],
+                                "color" => "primary",
                             ],
                         ],
                     ],
-                ]
+                ]),
             ]);
         } catch (Exception $ex) {
             $txt = var_export($ex, true);
