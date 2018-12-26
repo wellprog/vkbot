@@ -22,16 +22,14 @@ class V1_Message_Controller extends Base_Controller {
                                     "type" => "text",
                                     "payload" => json_encode(["button" => "123"]),
                                     "label" => "Ура Ура",
-                                ],
-                                "color" => "primary",
+                                ]
                             ],
                             [
                                 "action" => [
                                     "type" => "text",
                                     "payload" => json_encode(["button" => "321"]),
                                     "label" => "Ару Ару",
-                                ],
-                                "color" => "primary",
+                                ]
                             ],
                         ],
                     ],
