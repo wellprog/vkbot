@@ -35,7 +35,7 @@ class V1_Message_Controller extends Base_Controller {
                             ],
                         ],
                     ],
-                ]),
+                ], JSON_UNESCAPED_UNICODE),
             ]);
         } catch (Exception $ex) {
             $txt = var_export($ex, true);
