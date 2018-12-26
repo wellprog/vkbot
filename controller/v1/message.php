@@ -7,7 +7,11 @@ class V1_Message_Controller extends Base_Controller {
 
     public function NewAction () {
         $data = $this->Request->Raw("object");
-        App::$Logger->Write($data);
+        App::$vk->messages()->send(App::$apikey, [
+            "user_id" => $data["from_id"],
+            "peer_id" => $data["peer_id"],
+            "message" => "test",
+        ]);
         return $this->Responce->WriteRaw("OK");
     }
 
