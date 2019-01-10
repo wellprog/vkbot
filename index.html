@@ -13,7 +13,7 @@
 <body>
     <div class="app">
         <div class="header">
-
+                <button type="button" class="btn btn-primary btn-add-tile">Add</button>
         </div>
         <div class="body">
             <div class="right-panel">
@@ -41,12 +41,16 @@
 
                                             <button type="button" class="btn btn-success" onclick="addButton()">Добавить ответ</button>
                                         </div>
+                                        <div>
+                                            <div style="height: 20px;"></div>
+                                            <hr />
+                                            <button type="button" onclick="saveToCard()" class="btn btn-success btn-save-form">Ок</button>
+                                            <button type="button" onclick="cancelEdit()" class="btn btn-secondary">Отмена</button>
+                                        </div>
                                     </form>
                             </div>
                         </div>
                 </div>
-
-                <button type="button" class="btn btn-primary btn-add-tile">Add</button>
             </div>
 
 
@@ -79,21 +83,63 @@
     <script>
         //jQuery(".dragable").draggable({ handle: ".card-header" });
 
+        function saveToCard() {
+            var el = jQuery(".btn-save-form").data("element");
+            var form = getEmptyForm();
+            form.name = jQuery("#step_name").val();
+            form.text = jQuery("#step_text").val();
+            var buttons = jQuery(".buttons-area").children();
+
+            buttons.each(function(i, e) {
+                var current = jQuery(e);
+                form.buttons.push(current.find("input").val());
+            });
+
+            el.data("form", form);
+            cancelEdit();
+        }
+
+        function cancelEdit() {
+            jQuery(".right-panel").css("overflow", "hidden");
+            jQuery(".right-panel").animate({ width:0 });
+        }
+
         function getEmptyForm() {
             return {
                 name: "Новый шаг",
-                text: "",
+                text: "Тестовый текст",
                 buttons: [],
             };
         }
 
-        function fillForm(el, arr) {
-            
+        function clearForm() {
+            jQuery("#step_name").val("");
+            jQuery("#step_text").val("");
+            jQuery(".buttons-area").html("");
         }
 
-        function addButton() {
+        function fillForm(el, arr) {
+            clearForm();
+            jQuery("#step_name").val(arr.name);
+            jQuery("#step_text").val(arr.text);
+            for (var i = 0; i < arr.buttons.length; i++) {
+                addButton(arr.buttons[i]);
+            }
+
+            jQuery(".btn-save-form").data("element", el);
+
+            jQuery(".right-panel").animate({ width:300 }, function (){
+                jQuery(".right-panel").css("overflow", "visible");
+            });
+        }
+
+        function addButton(value) {
+            if (value === undefined)
+                value = "";
+
             var element = jQuery(".btn-add-template").clone();
             element.removeClass("btn-add-template");
+            element.find("input").val(value);
 
             jQuery(".buttons-area").append(element);
 
@@ -112,7 +158,8 @@
                 var el = jQuery(this);
                 var pElement = el.parent().parent();
 
-                alert(pElement.data("form").name);
+                //alert(pElement.data("form").name);
+                fillForm(pElement, pElement.data("form"));
             });
 
             
