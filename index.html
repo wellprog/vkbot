@@ -62,11 +62,26 @@
     </div>
 
     <div class="templates">
+
+            <div class="input-group mb-3 card-button-template">
+                <input disabled type="text" class="form-control">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Button</button>
+                </div>
+            </div>
+
+
             <div class="card floating-card dragable card-template">
                 <h5 class="card-header">Featured</h5>
                 <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                    <hr />
+                    <div class="buttons">
+
+                    </div>
+                    <hr />
+
                     <a href="#" class="btn btn-primary card-edit-button">Редактировать</a>
                 </div>
             </div>
@@ -96,6 +111,21 @@
             });
 
             el.data("form", form);
+
+            el.find(".card-header").html(form["name"]);
+            el.find(".card-text").html(form.text);
+            
+            var placeholder = el.find(".buttons");
+            placeholder.html("");
+
+            for (var i = 0; i < form.buttons.length; i++) {
+                var tmp = jQuery(".card-button-template").clone();
+                tmp.removeClass("card-button-template");
+
+                tmp.find("input").val(form.buttons[i]);
+                placeholder.append(tmp);
+            }
+
             cancelEdit();
         }
 
